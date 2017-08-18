@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import runStandalone from "./circlegraph/src/standalone"
 import runClassDiagram from "./classdiagram/src/standalone"
+import runCapellaArchitectureDiagram from "./capella/src/standalone"
 import runSvgPreRendered from "./svg/src/standalone"
 import runFlowServer from "./flow/src/flow-server"
 import runMulticore from "./multicore/src/multicore"
@@ -13,6 +14,8 @@ if (appMode === 'circlegraph')
     runStandalone()
 else if (appMode === 'class-diagram')
     runClassDiagram()
+else if (appMode === 'capella-architecture-diagram')
+    runCapellaArchitectureDiagram()
 else if (appMode === 'svg')
     runSvgPreRendered()
 else if (appMode === 'flow-server')
