@@ -6,7 +6,7 @@ import { isLayouting, Layouting, isBoundsAware } from "./model"
 import { ILayout, StatefulLayouter } from './layout'
 import { AbstractLayoutOptions, HAlignment, VAlignment } from './layout-options'
 import { BoundsData } from './hidden-bounds-updater'
-import { SPort } from '../../graph/sgraph'
+import { SPort, SNode } from '../../graph/sgraph'
 
 export abstract class AbstractLayout<T extends AbstractLayoutOptions & Object> implements ILayout {
 
@@ -84,7 +84,7 @@ export abstract class AbstractLayout<T extends AbstractLayoutOptions & Object> i
             y: containerOptions.paddingTop + 0.5 * (maxHeight - (maxHeight / containerOptions.paddingFactor))}
         container.children.forEach(
             child => {
-                if(child instanceof SPort) 
+                if(child instanceof SPort || child instanceof SNode) 
                     return
                 const boundsData = layouter.getBoundsData(child)
                 const bounds = boundsData.bounds
