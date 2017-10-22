@@ -25,8 +25,6 @@ public class CapellaDiagramServer extends DefaultDiagramServer {
 	
 	@Override
 	public void accept(ActionMessage message) {
-		super.accept(message);
-		
 		/*
 		 * When we will receive an action from the client requesting the model, we will also
 		 * return an action indicating that the client should update its model with the one
@@ -35,6 +33,8 @@ public class CapellaDiagramServer extends DefaultDiagramServer {
 		if (message.getAction() instanceof RequestModelAction) {
 			System architectureDiagram = this.diagramGenerator.generatorArchitectureDiagram();
 			this.updateModel(architectureDiagram);
+		} else {
+			super.accept(message);
 		}
 	}
 	

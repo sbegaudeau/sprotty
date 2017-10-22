@@ -93,15 +93,6 @@ public class CapellaLayoutEngine extends ElkLayoutEngine {
 			
 			this.layout((SGraph) root, configurator);
 		}
-		super.layout(root);
-	}
-	
-	@Override
-	protected boolean shouldInclude(SModelElement element, SModelElement sParent, ElkGraphElement elkParent, LayoutContext context) {
-		if (sParent instanceof Component && element instanceof SLabel) {
-			return true;
-		}
-		return super.shouldInclude(element, sParent, elkParent, context);
 	}
 	
 	@Override
