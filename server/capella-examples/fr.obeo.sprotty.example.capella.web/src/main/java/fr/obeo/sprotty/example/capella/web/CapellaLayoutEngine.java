@@ -16,18 +16,15 @@ import org.eclipse.elk.alg.layered.options.LayeringStrategy;
 import org.eclipse.elk.core.math.KVector;
 import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.options.HierarchyHandling;
+import org.eclipse.elk.core.options.NodeLabelPlacement;
 import org.eclipse.elk.core.options.SizeConstraint;
-import org.eclipse.elk.graph.ElkGraphElement;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import fr.obeo.sprotty.example.capella.web.diagram.Component;
 import io.typefox.sprotty.api.SGraph;
-import io.typefox.sprotty.api.SLabel;
-import io.typefox.sprotty.api.SModelElement;
 import io.typefox.sprotty.api.SModelRoot;
 import io.typefox.sprotty.layout.ElkLayoutEngine;
 import io.typefox.sprotty.layout.SprottyLayoutConfigurator;
@@ -56,7 +53,10 @@ public class CapellaLayoutEngine extends ElkLayoutEngine {
 				.setProperty(CoreOptions.ALGORITHM, LayeredOptions.ALGORITHM_ID)
 				.setProperty(CoreOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN)
 				.setProperty(LayeredOptions.LAYERING_STRATEGY, LayeringStrategy.NETWORK_SIMPLEX)
-				//.setProperty(LayeredOptions.SPACING_NODE_NODE, 50.0)
+				.setProperty(LayeredOptions.SPACING_NODE_NODE, 50.0)
+				.setProperty(LayeredOptions.SPACING_NODE_NODE_BETWEEN_LAYERS, 50.0)
+				.setProperty(LayeredOptions.SPACING_EDGE_NODE, 30.0)
+				.setProperty(LayeredOptions.SPACING_EDGE_NODE_BETWEEN_LAYERS, 30.0)
 				//.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.OFF)
 				//.setProperty(LayeredOptions.CROSSING_MINIMIZATION_STRATEGY, CrossingMinimizationStrategy.INTERACTIVE)
 				//.setProperty(LayeredOptions.CYCLE_BREAKING_STRATEGY, CycleBreakingStrategy.GREEDY)
@@ -65,17 +65,18 @@ public class CapellaLayoutEngine extends ElkLayoutEngine {
 				;
 			
 			configurator.configureByType("node:capellacomponent")
-				.setProperty(CoreOptions.NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.NODE_LABELS, SizeConstraint.MINIMUM_SIZE))
+				.setProperty(CoreOptions.NODE_SIZE_CONSTRAINTS, SizeConstraint.free())
 				.setProperty(CoreOptions.NODE_SIZE_MINIMUM, new KVector(250,  200))
-				//.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.insideBottomRight())
+				.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.insideTopCenter())
 				//.setProperty(LayeredOptions.CROSSING_MINIMIZATION_GREEDY_SWITCH_TYPE, GreedySwitchType.OFF)
 				;
 			
 			configurator.configureByType("comp:main");
 			
 			configurator.configureByType("node:capellaservice")
-				.setProperty(CoreOptions.NODE_SIZE_CONSTRAINTS, EnumSet.of(SizeConstraint.NODE_LABELS, SizeConstraint.MINIMUM_SIZE, SizeConstraint.PORTS))
+				.setProperty(CoreOptions.NODE_SIZE_CONSTRAINTS, SizeConstraint.free())
 				.setProperty(CoreOptions.NODE_SIZE_MINIMUM, new KVector(100, 60))
+				.setProperty(CoreOptions.NODE_LABELS_PLACEMENT, NodeLabelPlacement.insideTopCenter())
 				//.setProperty(LayeredOptions.PORT_CONSTRAINTS, PortConstraints.FIXED_SIDE)
 				;
 			
