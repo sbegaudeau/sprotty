@@ -66,7 +66,7 @@ const createContainer = (useWebsocket: boolean, containerId: string) => {
     container.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope()
   }
   overrideViewerOptions(container, {
-    needsClientLayout: false,
+    needsClientLayout: true,
     needsServerLayout: true,
     baseDiv: containerId,
     hiddenDiv: containerId + '-hidden'

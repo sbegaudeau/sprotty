@@ -110,11 +110,11 @@
     text-align: left;
 }
 
-.graph {
+.sprotty-graph {
     font-size: 15pt;
 }
 
-.label {
+.sprotty-label {
     stroke-width: 0;
     fill: #000;
     font-weight: inherit;
@@ -122,12 +122,12 @@
     font-size: 100%;
 }
 
-.edge {
+.sprotty-edge {
     fill: none;
     stroke: #000;
     stroke-width: 2;
 }
-.edge.arrow {
+.sprotty-edge.arrow {
     fill: #000;
     stroke: #000;
 }
